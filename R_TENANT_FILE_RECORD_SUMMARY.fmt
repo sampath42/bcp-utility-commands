@@ -1,0 +1,16 @@
+12.0
+14
+1       SQLCHAR             0       12      "~"      1     ID                                                                   ""
+2       SQLCHAR             0       12      "~"      2     FILEID                                                               ""
+3       SQLCHAR             0       72      "~"      3     RECORDID                                                             SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       12      "~"      4     VALIDATIONTYPEID                                                     ""
+5       SQLCHAR             0       12      "~"      5     REFERENCEID                                                          ""
+6       SQLCHAR             0       12      "~"      6     RECORDSTATUSID                                                       ""
+7       SQLCHAR             0       200     "~"      11    FIELDNAME                                                            SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0       0       "~"      12    FIELDVALUE                                                           SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0       20      "~"      13    RULEVERSION                                                          SQL_Latin1_General_CP1_CI_AS
+10      SQLCHAR             0       1       "~"      14    ISACTIVE                                                             ""
+11      SQLCHAR             0       12      "~"      7     CREATEDBY                                                            ""
+12      SQLCHAR             0       30      "~"      8     CREATEDDATE                                                          ""
+13      SQLCHAR             0       12      "~"      9     UPDATEDBY                                                            ""
+14      SQLCHAR             0       30      "\r\n"   10    UPDATEDDATE                                                          ""
