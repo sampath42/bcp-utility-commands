@@ -1,0 +1,48 @@
+generating format file
+------------------------
+bcp DEV_NEW_TENANT.[dbo].R_TENANT_FILE_RECORD_SUMMARY format -c -f D:\record_summary.fmt -n -C 65001 -t~ -U porziouser -P porzio@123 -S gstdevsqlserver.database.windows.net
+
+output file
+-----------
+
+13.0
+15
+1       SQLINT              0       4       "~"    1     ID                                                                   ""
+2       SQLINT              1       4       "~"    2     FILEID                                                               ""
+3       SQLNCHAR            2       72      "~"    3     RECORDID                                                             SQL_Latin1_General_CP1_CI_AS
+4       SQLINT              1       4       "~"    4     VALIDATIONTYPEID                                                     ""
+5       SQLINT              1       4       "~"    5     REFERENCEID                                                          ""
+6       SQLINT              1       4       "~"    6     RECORDSTATUSID                                                       ""
+7       SQLINT              1       4       "~"    7     CREATEDBY                                                            ""
+8       SQLDATETIME2        1       8       "~"    8     CREATEDDATE                                                          ""
+9       SQLINT              1       4       "~"    9     UPDATEDBY                                                            ""
+10      SQLDATETIME2        1       8       "~"    10    UPDATEDDATE                                                          ""
+11      SQLNCHAR            2       200     "~"    11    FIELDNAME                                                            SQL_Latin1_General_CP1_CI_AS
+12      SQLNCHAR            8       0       "~"    12    FIELDVALUE                                                           SQL_Latin1_General_CP1_CI_AS
+13      SQLNCHAR            2       20      "~"    13    RULEVERSION                                                          SQL_Latin1_General_CP1_CI_AS
+14      SQLBIT              1       1       "~"    14    ISACTIVE                                                             ""
+15      SQLBIT              1       1       ""     15    ISPRODUCTION                                                         ""
+
+=======================================================================================================================================================
+
+for importing file data to table
+-----------------------------------
+bcp DEV_NEW_TENANT.[dbo].R_TENANT_STAGING_PROFILES IN f615t1376_k1_R -c -C 65001 -t~ -U porziouser -P porzio@123 -S gstdevsqlserver.database.windows.net -b 1000
+
+=======================================================================================================================================================
+
+importing file data to table using format file
+------------------------------------------------
+bcp DEV_NEW_TENANT.[dbo].R_TENANT_FILE_RECORD_SUMMARY IN D:\f1135t1376_k1_BR -f D:\f1135t1376_k1_R.fmt -C 65001 -t~ -U porziouser -P porzio@123 -S gstdevsqlserver.database.windows.net -b 1000
+
+=======================================================================================================================================================
+
+samples for queryout returns the output in file
+------------------------------------------------
+
+bcp "WITH ROWSCOUNT AS(SELECT COUNT(1) ROWCNT FROM [DEV_NEW_TENANT].[DBO].[R_TENANT_FILE_STAGING_RECORD_SUMMARY] WHERE FILEID = 615 AND VALIDATIONTYPEID = 2 GROUP BY RECORDID) SELECT COUNT(1) AS ROWCNT FROM ROWSCOUNT" queryout D:\test.txt -c -C 65001 -t~ -U porziouser -P porzio@123 -S gstdevsqlserver.database.windows.net -d DEV_NEW_TENANT -b 1000
+
+bcp "EXEC [DEV_NEW_TENANT].[DBO].[USP_GetImportedRecordsCount] 615" queryout D:\test.txt -c -C 65001 -t~ -U porziouser -P porzio@123 -S gstdevsqlserver.database.windows.net -d DEV_NEW_TENANT -b 1000
+
+=======================================================================================================================================================
+
